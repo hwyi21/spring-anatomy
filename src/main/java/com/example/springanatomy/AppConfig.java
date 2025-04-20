@@ -17,6 +17,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
+    @Bean
+    public DependencyService dependencyService() {
+        return new DependencyService();
+    }
+
     /**
      * @Bean은 해당 메서드가 반환하는 객체를 스프링 컨테이너에 Bean으로 등록하게 해주는 어노테이션입니다.
      * @Configuration 클래스 안에서 사용되며, 외부 라이브러리나 직접 생성한 객체를 등록할 때 사용됩니다.

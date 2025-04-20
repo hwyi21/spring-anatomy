@@ -1,11 +1,16 @@
 package com.example.springanatomy;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class MyService {
 
+    @Autowired
+    private DependencyService dependency;
+
     public MyService() {
         System.out.println("MyService 생성자 호출됨");
+        System.out.println("생성자에서 DI 상태 확인: " + dependency); // null일 것
     }
 
     /**
@@ -16,6 +21,8 @@ public class MyService {
     @PostConstruct
     public void init() {
         System.out.println("@PostConstruct 초기화 메서드 호출됨");
+        System.out.println("PostConstruct에서 DI 상태 확인: " + dependency); // 주입 완료 상태
+        dependency.assist(); // 여기서 동작 성공
     }
 
     public void doSomething() {
